@@ -1,0 +1,4 @@
+.idea
+examples/assets
+node_modules
+*.iml
