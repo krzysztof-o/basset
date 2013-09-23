@@ -121,5 +121,9 @@ public class BassetManager extends AssetManager
 
 		loadQueue(onProgress);
 	}
+	
+	override public function removeTexture(name:String, dispose:Boolean=true):void
+	{
+	}
 }
 }
