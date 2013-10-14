@@ -58,10 +58,10 @@ function isNotSpritesheetFile(file) {
     return path.basename(file) !== 'spritesheet.png';
 }
 
-function getAllDirectories(path, directories) {
+function getAllDirectories(_path, directories) {
     var directories = directories || [];
-    fs.readdirSync(path).forEach(function (name) {
-        var directory = path + '/' + name;
+    fs.readdirSync(_path).forEach(function (name) {
+        var directory = path.resolve(_path + path.sep + name);
         if (fs.lstatSync(directory).isDirectory()) {
             directories.push(directory);
             getAllDirectories(directory, directories);
