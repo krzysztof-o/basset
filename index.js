@@ -1,4 +1,4 @@
-var spritesheet = require('spritesheet-js');
+var spritesheet = require('../spritesheet.js/index.js');
 var chokidar = require('chokidar');
 var path = require('path');
 var fs = require('fs');
@@ -40,7 +40,7 @@ function generateSpritesheet(_path, callback) {
     files = files.filter(isImageFile);
     files = files.filter(isNotSpritesheetFile);
 
-    spritesheet(files, {path:_path, name:'spritesheet'}, function (err) {
+    spritesheet(files, {path:_path, name:'spritesheet', format: 'starling'}, function (err) {
         if (err) throw err;
 
         if (!err) {
