@@ -1,4 +1,4 @@
-var spritesheet = require('../spritesheet.js/index.js');
+var spritesheet = require('spritesheet-js');
 var chokidar = require('chokidar');
 var path = require('path');
 var fs = require('fs');
@@ -39,8 +39,7 @@ function generateSpritesheet(_path, callback) {
     });
     files = files.filter(isImageFile);
     files = files.filter(isNotSpritesheetFile);
-
-    spritesheet(files, {path:_path, name:'spritesheet', format: 'starling'}, function (err) {
+    spritesheet(files, {path:_path, name:lastDirname(_path), format:'starling'}, function (err) {
         if (err) throw err;
 
         if (!err) {
@@ -55,7 +54,7 @@ function isImageFile(file) {
 }
 
 function isNotSpritesheetFile(file) {
-    return path.basename(file) !== 'spritesheet.png';
+    return path.basename(file) !== lastDirname(path.dirname(file)) + '.png';
 }
 
 function getAllDirectories(_path, directories) {
@@ -68,4 +67,8 @@ function getAllDirectories(_path, directories) {
         }
     });
     return directories;
+}
+
+function lastDirname(file) {
+    return file.substring(file.lastIndexOf(path.sep) + path.sep.length);
 }
